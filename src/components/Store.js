@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ProductsContext } from "../context/productContextProvider";
 import { Button, Container } from "react-bootstrap";
+import Dropdown from 'react-bootstrap/Dropdown';
 import { shorten } from "../helper/function.js";
 import SearchBox from "./SearchBox.js";
 import { Link } from "react-router-dom";
@@ -33,13 +34,24 @@ const Store = () => {
         search={search}
         setSearch={setSearch}
       />
-      <div>
-      <Link to="/mens"><h3>Mens</h3></Link>
-      <Link to="/womens"><h3>Women</h3></Link>
-      <Link to="/jewelery"><h3>Jewelery</h3></Link>
-      <Link to="/electronic"><h3>Electronics</h3></Link>
+      
+      {/* <Link to="/mens"><Button variant="primary">Mens</Button></Link>
+      <Link to="/womens"><Button variant="primary">Women</Button></Link>
+      <Link to="/jewelery"><Button variant="primary">Jewelery</Button></Link>
+      <Link to="/electronic"><Button variant="primary">Electronics</Button></Link> */}
+ <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic" style={{backgroundColor:"#0B5ED7"}}>
+        Choose Category
+      </Dropdown.Toggle>
 
-      </div>
+      <Dropdown.Menu>
+        <Dropdown.Item href="/mens">Mens</Dropdown.Item>
+        <Dropdown.Item href="/womens">Wones</Dropdown.Item>
+        <Dropdown.Item href="/jewelery">Jewelery</Dropdown.Item>
+        <Dropdown.Item href="/electronic">Electronic</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+     
       <Row>
         {productsData.map((product) => (
           <Col xs={6} md={4} key={product.id}>
