@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
 import { ProductsContext } from "../../context/productContextProvider";
 import { shorten } from "../../helper/function";
 
@@ -13,7 +13,8 @@ const Electronic = () => {
   return (
     <Container>
       <Row>
-        {data.map((product) => (
+        {data.length ?
+        data.map((product) => (
           <Col xs={6} md={4} key={product.id}>
             <Card
               style={{
@@ -40,7 +41,9 @@ const Electronic = () => {
               </Card.Body>
             </Card>
           </Col>
-        ))}
+        ))
+        :  <Spinner style={{margin:"50px 500px 70px"}} /> 
+      }
       </Row>
     </Container>
   );
