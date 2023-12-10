@@ -1,47 +1,18 @@
-import React, { useContext, useEffect, useState} from "react";
+import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { ProductsContext } from "../context/productContextProvider";
 import { Button, Container } from "react-bootstrap";
-import { shorten } from "../helper/function.js";
-import SearchBox from "./SearchBox.js";
-import { Link } from "react-router-dom";
+import { shorten } from "../../helper/function.js";
+import { ProductsContext } from "../../context/productContextProvider.js";
 
-const Store = () => {
+const Mens = () => {
   const products = useContext(ProductsContext);
-  const [productsData, setProductsData] = useState(products);
-  const [search, setSearch] = useState([]);
- 
-  useEffect(() => setProductsData(products), [products]);
-
-  const searchProducts = () => {
-    if (search) {
-      const newProducts = products.filter((i) =>
-        i.title.toLowerCase().includes(search)
-      );
-      setProductsData(newProducts);
-    } else {
-      setProductsData(products);
-    }
-  };
-
+  const data = products.filter((item) => item.category === "men's clothing");
   return (
     <Container>
-      <SearchBox
-        searchProducts={searchProducts}
-        search={search}
-        setSearch={setSearch}
-      />
-      <div>
-      <Link to="/mens"><h3>Mens</h3></Link>
-      <Link to="/womens"><h3>Women</h3></Link>
-      <Link to="/jewelery"><h3>Jewelery</h3></Link>
-      <Link to="/electronic"><h3>Electronics</h3></Link>
-
-      </div>
       <Row>
-        {productsData.map((product) => (
+        {data.map((product) => (
           <Col xs={6} md={4} key={product.id}>
             <Card
               style={{
@@ -74,4 +45,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default Mens;
