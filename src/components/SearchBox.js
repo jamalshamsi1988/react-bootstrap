@@ -1,29 +1,42 @@
-import React from 'react'
-import { Button, Container } from 'react-bootstrap'
-import {IoSearchSharp} from 'react-icons/io5'
+import React from "react";
+import { Button, Container } from "react-bootstrap";
+import { IoSearchSharp } from "react-icons/io5";
+import Form from "react-bootstrap/Form";
 
-const SearchBox = ({setSearch,search,searchProducts}) => {
+const SearchBox = ({ setSearch, search, searchProducts }) => {
   return (
-    <Container style={{alignItems:"center",textAlign:"center"}} xs={6} md={4} >
-      <input
+    <Container
+      style={{ alignItems: "center", textAlign: "center" }}
+      xs={6}
+      md={4}
+    >
+      <Form.Control
         style={{
+          display:"inline-block",
           height: "30px",
           width: "300px",
           border: "1px solid silver",
           borderRadius: " 5px",
           backgroundColor: "#f6f6f6",
           padding: "20px",
-          margin: "30px 20px 50px",
+          margin: "30px 50px 30px",
         }}
         type="text"
         placeholder="Search Product"
         value={search}
-        onChange={e => setSearch(e.target.value.toLowerCase())}
+        onChange={(e) => setSearch(e.target.value.toLowerCase())}
+        id="inputText"
+        aria-describedby="passwordHelpBlock"
       />
-       <Button variant="primary" style={{width:"50px"}} onClick={searchProducts}><IoSearchSharp/></Button>
-  
+      <Button
+        variant="primary"
+        style={{ width: "50px"}}
+        onClick={searchProducts}
+      >
+        <IoSearchSharp />
+      </Button>
     </Container>
-  )
-}
+  );
+};
 
-export default SearchBox
+export default SearchBox;
